@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Advert</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ advert.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ advert.title }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ advert.description }}</td>
+            </tr>
+            <tr>
+                <th>Photo</th>
+                <td ><img style="max-width: 300px" src ="/uploads/photo/{{ advert.photo }}"/></td>
+            </tr>
+            <tr>
+                <th>Expirydate</th>
+                <td>{% if advert.expiryDate %}{{ advert.expiryDate|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Komentarze:</th>
+                <td>
+                {% for comment in advert.comments %}
+                {{ comment.title }} : {{ comment.content }}<br>
+                {%  endfor %}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+
+    <table>
+       <tr>
+           <td>
+                {{ form_start(comment_form) }}
+                {{form_label(comment_form.title)}}
+                <br>
+                {{form_widget(comment_form.title)}}
+                <br>
+                {{form_label(comment_form.content)}}
+                <br>
+                {{form_widget(comment_form.content)}}
+                <br>
+                <br>
+                {{ form_widget(comment_form) }}
+                <input type="submit" value="Zapisz" />
+                {{ form_end(comment_form) }}
+            </td>
+       </tr>
+    </table>
+
+
+    <ul>
+        <li>
+            <a href="{{ path('advert_index') }}">Back to the list</a>
+        </li>
+
+    </ul>
+{% endblock %}

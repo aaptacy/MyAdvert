@@ -1,0 +1,14 @@
+# This file is auto-generated during the composer install
+parameters:
+    database_host: 127.0.0.1
+    database_port: null
+    database_name: advert_table
+    database_user: root
+    database_password: coderslab
+    mailer_transport: smtp
+    mailer_host: pkosinski.e-kei.pl
+    mailer_user: coderslab@pkosinski.e-kei.pl
+    mailer_password: 042KsWg1t4
+    secret: 5c0e2b6bdec0cf3d0894c8eaa71ec438c94a2765
+    photo_directory: '%kernel.project_dir%/web/uploads/photo'
+    default_photo: '%kernel.project_dir%/web/photos/indeks.jpg'
