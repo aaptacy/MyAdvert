@@ -29,10 +29,12 @@ class AdvertController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $adverts = $em->getRepository('AppBundle:Advert')->findAll();
+        $categories = $em->getRepository('AppBundle:Category')->findAll();
 
 
         return $this->render('advert/index.html.twig', array(
             'adverts' => $adverts,
+            'categories'=>$categories
         ));
     }
 
@@ -126,9 +128,11 @@ class AdvertController extends Controller
 
         $title = $em->getRepository('AppBundle:Category')->findOneByTitle($category);
         $advert = $title->getAdverts();
+        $categories = $em->getRepository('AppBundle:Category')->findAll();
 
         return $this->render('advert/index.html.twig', array(
-            'adverts' => $advert
+            'adverts' => $advert,
+            'categories' => $categories
         ));
     }
 

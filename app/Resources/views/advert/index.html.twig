@@ -4,7 +4,7 @@
     <table style="background-color: #5eb5e0; box-shadow: 2px 2px 2px 2px grey">
         <tr>
             <td>
-                <img style="max-width: 100px" src="{{ asset('photos/mytable.jpg') }}">
+                <a href="{{ path('advert_index') }}"><img style="max-width: 100px" src="{{ asset('photos/myadvert.jpg') }}"></a>
             </td>
             <td width="1000px" align="right">
                 <a style="color: white;" href={{ path('fos_user_profile_show') }}><b>Profil MyTable</b></a>
@@ -17,49 +17,68 @@
 
         </tr>
     </table>
+    <br>
+    <table >
+        <tr style="border: solid darkgreen">
+            {% for category in categories %}
+            <td width="2000px" style="box-shadow: 3px 3px 3px 3px grey;border: 5px solid silver; border-radius: 6px;background-color: darkorange"><a style="color: white; font-weight: bolder" href="{{ path('advert_show_category',{'category':category.title})}}">{{ category.title }}</a></td>
+            {% endfor %}
+        </tr>
+    </table>
     <h2>Najnowsze ogłoszenia</h2>
-
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Title</th>
-                <th>Description</th>
-                <th>Photo</th>
-                <th>Expirydate</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
+    <table style="float: left; box-shadow: 3px 3px 3px 3px grey" border="solid black" rules="all" >
         <tbody>
         {% for advert in adverts %}
-            {% if advert.expiryDate.timestamp > date().timestamp %}
-            <tr>
-                <td><a href="{{ path('advert_show', { 'id': advert.id }) }}">{{ advert.id }}</a></td>
-                <td>{{ advert.title }}</td>
+            {% if advert.expiryDate.timestamp > date().timestamp and advert.id%2 == 1%}
+            <tr style="box-shadow: 3px 3px 3px 3px grey; background-color: #ffac44">
+                <td>{{ advert.title }} <b> - {{ advert.price }} zł</b></td>
                 <td>{{ advert.description }}</td>
                 <td>
                     {% if advert.photo %}
-                    <img style="max-width: 300px" src ="/uploads/photo/{{ advert.photo }}"/>
+                    <img style="width: 170px; height: 110px;" src ="/uploads/photo/{{ advert.photo }}"/>
                     {% else %}
                         <img style="max-width: 150px" src ="/photos/indeks.jpg"/>
                     {% endif %}
                 </td>
-                <td>{% if advert.expiryDate %}{{ advert.expiryDate|date('Y-m-d H:i:s') }}{% endif %}</td>
                 <td>
                     <ul>
                         <li>
                             <a href="{{ path('advert_show', { 'id': advert.id }) }}">show</a>
                         </li>
-                        <li>
-                            <a href="{{ path('advert_edit', { 'id': advert.id }) }}">edit</a>
-                        </li>
                     </ul>
                 </td>
             </tr>
+            <tr style="height: 8px;"></tr>
             {% endif %}
         {% endfor %}
         </tbody>
     </table>
-
+    <table style="float: right; box-shadow: 3px 3px 3px 3px grey" border="solid black" rules="all" >
+        <tbody>
+        {% for advert in adverts %}
+            {% if advert.expiryDate.timestamp > date().timestamp and advert.id%2 == 0%}
+                <tr style="box-shadow: 3px 3px 3px 3px grey; background-color: #ffac44">
+                    <td>{{ advert.title }} <b> - {{ advert.price }} zł</b></td>
+                    <td>{{ advert.description }}</td>
+                    <td>
+                        {% if advert.photo %}
+                            <img style="width: 170px; height: 110px;" src ="/uploads/photo/{{ advert.photo }}"/>
+                        {% else %}
+                            <img style="max-width: 150px" src ="/photos/indeks.jpg"/>
+                        {% endif %}
+                    </td>
+                    <td>
+                        <ul>
+                            <li>
+                                <a href="{{ path('advert_show', { 'id': advert.id }) }}">show</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+                <tr style="height: 8px;"></tr>
+            {% endif %}
+        {% endfor %}
+        </tbody>
+    </table>
 
 {% endblock %}

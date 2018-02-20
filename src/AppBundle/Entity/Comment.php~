@@ -52,7 +52,7 @@ class Comment
     /**
      * Many Comments have One Advert.
      * @ORM\ManyToOne(targetEntity="Advert", inversedBy="comments")
-     * @ORM\JoinColumn(name="advert_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="advert_id", referencedColumnName="id", onDelete="CASCADE")
      */
 
     private $advert;
@@ -164,4 +164,28 @@ class Comment
     }
 
 
+
+    /**
+     * Set notify
+     *
+     * @param boolean $notify
+     *
+     * @return Comment
+     */
+    public function setNotify($notify)
+    {
+        $this->notify = $notify;
+
+        return $this;
+    }
+
+    /**
+     * Get notify
+     *
+     * @return boolean
+     */
+    public function isNotify()
+    {
+        return $this->notify;
+    }
 }

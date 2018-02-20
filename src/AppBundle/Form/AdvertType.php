@@ -17,6 +17,7 @@ class AdvertType extends AbstractType
     {
         $builder->add('title')
                 ->add('description')
+                ->add('price')
                 ->add('photo', FileType::class, ['required'=> false])
                 ->add('expiryDate')
                 ->add('categories', EntityType::class,

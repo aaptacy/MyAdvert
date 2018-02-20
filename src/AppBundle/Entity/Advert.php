@@ -51,6 +51,13 @@ class Advert
     private $expiryDate;
 
 
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="price", type="float")
+     */
+
+    private $price;
 
     /**
     * @ORM\ManyToOne(targetEntity="User", inversedBy="adverts")
@@ -279,4 +286,28 @@ class Advert
     }
 
 
+
+    /**
+     * Set price
+     *
+     * @param float $price
+     *
+     * @return Advert
+     */
+    public function setPrice($price)
+    {
+        $this->price = $price;
+
+        return $this;
+    }
+
+    /**
+     * Get price
+     *
+     * @return float
+     */
+    public function getPrice()
+    {
+        return $this->price;
+    }
 }

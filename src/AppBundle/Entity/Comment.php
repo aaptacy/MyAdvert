@@ -188,4 +188,14 @@ class Comment
     {
         return $this->notify;
     }
+
+    /**
+     * Get notify
+     *
+     * @return boolean
+     */
+    public function getNotify()
+    {
+        return $this->notify;
+    }
 }
