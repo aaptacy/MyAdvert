@@ -13,12 +13,12 @@ The MyAdvert allows to:
 
 ## Author
 
-* **Albert Aptacy** - [PurpleBooth](https://github.com/PurpleBooth)
+* **Albert Aptacy**
 
 
 ## Acknowledgments
 
 * This is the final project to PHP course in CodersLab
-o
+
 
 
